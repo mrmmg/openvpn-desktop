@@ -111,10 +111,14 @@ jobs:
           merge-multiple: true
       - name: Release notes from CHANGELOG.md
         run: |
-          # Section "## [X.Y.Z] ..." up to the next "## ["; falls back to generated notes.
-          awk -v v="$VERSION" '
-            /^## \[/ { if (on) exit; on = index($0, "[" v "]") == 4 ; next }
-            on { print }' CHANGELOG.md > notes.md
+          # Section "## [X.Y.Z] ..." up to the next "## ["; a pre-release (X.Y.Z-rc.1) uses the X.Y.Z entry.
+          notes() {
+            awk -v v="$1" '
+              /^## \[/ { if (on) exit; on = index($0, "[" v "]") == 4 ; next }
+              on { print }' CHANGELOG.md
+          }
+          notes "$VERSION" > notes.md
+          [ -s notes.md ] || notes "${VERSION%%-*}" > notes.md
           [ -s notes.md ] || echo "No changelog entry for ${VERSION}; see the commit history." > notes.md
       - name: Checksums
         run: cd dist && sha256sum * > SHA256SUMS.txt
