@@ -19,8 +19,8 @@ release: "1"
 contents:
   - src: "./bin/openvpn-desktop"
     dst: "/usr/local/bin/openvpn-desktop"
-  - src: "./build/appicon.png"
-    dst: "/usr/share/icons/hicolor/128x128/apps/openvpn-desktop.png"
+  - src: "./assets/icon.png"
+    dst: "/usr/share/icons/hicolor/256x256/apps/openvpn-desktop.png"
   - src: "./build/linux/openvpn-desktop.desktop"
     dst: "/usr/share/applications/openvpn-desktop.desktop"
 

@@ -112,10 +112,18 @@ case "$asset" in
     ;;
   *.tar.gz)
     dest="$HOME/.local/bin"
+    share="${XDG_DATA_HOME:-$HOME/.local/share}"
     say "Installing into $dest"
-    run mkdir -p "$dest"
-    if [ "$DRY_RUN" != 1 ]; then tar -xzf "$TMP/$asset" -C "$TMP" "$APP"; fi
+    if [ "$DRY_RUN" != 1 ]; then tar -xzf "$TMP/$asset" -C "$TMP"; fi
+    run mkdir -p "$dest" "$share/applications" "$share/icons/hicolor/256x256/apps"
     run install -m 755 "$TMP/$APP" "$dest/$APP"
+    run install -m 644 "$TMP/$APP.png" "$share/icons/hicolor/256x256/apps/$APP.png"
+    # The menu entry needs the full path, since ~/.local/bin is often not on its PATH.
+    if [ "$DRY_RUN" != 1 ]; then
+      sed "s|^Exec=.*|Exec=$dest/$APP|" "$TMP/$APP.desktop" > "$share/applications/$APP.desktop"
+      have update-desktop-database && update-desktop-database "$share/applications" >/dev/null 2>&1 || true
+      have gtk-update-icon-cache && gtk-update-icon-cache -q -t "$share/icons/hicolor" >/dev/null 2>&1 || true
+    fi
     say "Needs GTK 4 and WebKitGTK 6 (Arch: pacman -S gtk4 webkitgtk-6.0). Make sure $dest is in your PATH."
     ;;
   *.zip)

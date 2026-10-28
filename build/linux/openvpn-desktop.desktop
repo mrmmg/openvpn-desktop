@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Application
-Name=openvpn-desktop
+Name=OpenVPN Desktop
+GenericName=OpenVPN Client
+Comment=Desktop client for OpenVPN
 Exec=openvpn-desktop
 Icon=openvpn-desktop
-Categories=Development;
-Terminal=false
-Keywords=wails
-Version=1.0
+Categories=Network;Security;
+Keywords=vpn;openvpn;tunnel;
+StartupWMClass=openvpn-desktop
 StartupNotify=false
+Terminal=false

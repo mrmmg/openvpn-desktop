@@ -10,6 +10,9 @@ All notable changes to this project are listed here. The format follows
 - `install.sh`: one-line install/update script that picks the right package for Linux or macOS from the latest GitHub release.
 - Check for updates: a button in About and an optional start-up check (Settings → Updates) that shows the command to update.
 
+### Fixed
+- The app now has a proper menu entry and icon on Linux: a hand-written `.desktop` file, a 256px icon, and `install.sh` installs both for the tar.gz install.
+
 ## [0.1.0] - 2026-10-28
 
 First public version.

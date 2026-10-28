@@ -114,7 +114,9 @@ func main() {
 			application.NewService(backend.NewSettingsService(core, ctrl, logBuf)),
 		},
 		Assets: application.AssetOptions{Handler: application.AssetFileServerFS(assets)},
-		Mac:    application.MacOptions{ApplicationShouldTerminateAfterLastWindowClosed: true},
+		// The window's app id, matched with openvpn-desktop.desktop for its icon.
+		Linux: application.LinuxOptions{ProgramName: "openvpn-desktop"},
+		Mac:   application.MacOptions{ApplicationShouldTerminateAfterLastWindowClosed: true},
 		// Stop the managed connection and background loops on exit, so no
 		// OpenVPN process or goroutine outlives the app.
 		OnShutdown: func() {

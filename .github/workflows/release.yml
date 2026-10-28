@@ -57,7 +57,10 @@ jobs:
           name="openvpn-desktop_${VERSION}_linux_amd64"
           mv bin/openvpn-desktop.deb "dist/${name}.deb"
           mv bin/openvpn-desktop.rpm "dist/${name}.rpm"
-          tar -C bin -czf "dist/${name}.tar.gz" openvpn-desktop
+          mkdir stage
+          cp bin/openvpn-desktop build/linux/openvpn-desktop.desktop stage/
+          cp assets/icon.png stage/openvpn-desktop.png
+          tar -C stage -czf "dist/${name}.tar.gz" .
       - uses: actions/upload-artifact@v4
         with:
           name: linux
