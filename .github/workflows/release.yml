@@ -51,7 +51,8 @@ jobs:
           export GOARCH=amd64 GIT_COMMITTER_NAME=mrmmg GIT_COMMITTER_EMAIL=noreply@github.com
           wails3 task version:sync
           wails3 build
-          wails3 task linux:generate:deb linux:generate:rpm
+          wails3 task linux:generate:deb
+          wails3 task linux:generate:rpm
           mkdir dist
           name="openvpn-desktop_${VERSION}_linux_amd64"
           mv bin/openvpn-desktop.deb "dist/${name}.deb"
