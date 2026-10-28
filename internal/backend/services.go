@@ -311,7 +311,7 @@ func (s *SettingsService) Get() Settings {
 	detected, _ := process.LocateBinary("")
 	return Settings{
 		Theme: c.Theme, LogVerbosity: c.LogVerbosity, OpenVPNBinary: c.OpenVPNBinary,
-		DetectedBinary: detected, ProfilesDir: c.ProfilesDir, PublicIPCheck: c.PublicIPCheck, IPServices: toDTOServices(c.IPServices), AutoReconnect: c.AutoReconnect, CheckUpdates: c.CheckUpdates, ReconnectAttempts: c.ReconnectAttempts, ReconnectInterval: c.ReconnectInterval, WindowWidth: c.WindowWidth, WindowHeight: c.WindowHeight,
+		DetectedBinary: detected, ProfilesDir: c.ProfilesDir, PublicIPCheck: c.PublicIPCheck, IPServices: toDTOServices(c.IPServices), AutoReconnect: c.AutoReconnect, CheckUpdates: c.CheckUpdates, CloseToTray: c.CloseToTray, TrayAvailable: TrayAvailable != nil && TrayAvailable(), ReconnectAttempts: c.ReconnectAttempts, ReconnectInterval: c.ReconnectInterval, WindowWidth: c.WindowWidth, WindowHeight: c.WindowHeight,
 		ConfigFile: s.core.Cfg.Path(), LogFile: s.core.LogFile, Privilege: s.core.Launcher.Describe(), Version: Version,
 	}
 }
@@ -368,6 +368,14 @@ func (s *SettingsService) SetAutoReconnect(enabled bool, attempts, intervalSec i
 	return s.update(func(c *appconfig.Config) {
 		c.AutoReconnect, c.ReconnectAttempts, c.ReconnectInterval = enabled, attempts, intervalSec
 	})
+}
+
+// TrayAvailable reports whether the desktop has a tray to hide into; set by main.
+var TrayAvailable func() bool
+
+// SetCloseToTray chooses whether closing the window hides it to the tray.
+func (s *SettingsService) SetCloseToTray(on bool) Result {
+	return s.update(func(c *appconfig.Config) { c.CloseToTray = on })
 }
 
 // SetCheckUpdates enables or disables the check for a newer release at start-up.

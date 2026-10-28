@@ -44,9 +44,13 @@ func main() {
 	}
 
 	var app *application.App
+	var tr *tray
 	emit := func(name string, data any) {
 		if app == nil {
 			return
+		}
+		if st, ok := data.(backend.ConnectionState); ok && name == backend.EventState && tr != nil {
+			tr.update(st)
 		}
 		if data == nil {
 			app.Event.Emit(name) // void events must carry no data
@@ -141,6 +145,18 @@ func main() {
 		if files := e.Context().DroppedFiles(); len(files) > 0 {
 			go profiles.HandleDrop(files)
 		}
+	})
+
+	tr = newTray(app, win, ctrl)
+	// Closing the window keeps the app (and the VPN) running in the tray, when
+	// that is switched on and the desktop has a tray to bring it back from.
+	backend.TrayAvailable = trayAvailable
+	win.RegisterHook(events.Common.WindowClosing, func(e *application.WindowEvent) {
+		if tr.quitting.Load() || !core.Cfg.Get().CloseToTray || !trayAvailable() {
+			return
+		}
+		e.Cancel()
+		win.Hide()
 	})
 
 	if err := app.Run(); err != nil {

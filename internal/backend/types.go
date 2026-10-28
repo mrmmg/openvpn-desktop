@@ -152,6 +152,8 @@ type Settings struct {
 	IPServices        []IPService `json:"ipServices"`
 	AutoReconnect     bool        `json:"autoReconnect"`
 	CheckUpdates      bool        `json:"checkUpdates"`
+	CloseToTray       bool        `json:"closeToTray"`
+	TrayAvailable     bool        `json:"trayAvailable"`
 	ReconnectAttempts int         `json:"reconnectAttempts"`
 	ReconnectInterval int         `json:"reconnectInterval"`
 	WindowWidth       int         `json:"windowWidth"`

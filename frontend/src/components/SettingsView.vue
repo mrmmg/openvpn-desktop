@@ -97,6 +97,10 @@ async function setVerbosity(v: number) {
   handleResult(await SettingsService.SetLogVerbosity(v), "Could not save");
   await refreshSettings();
 }
+async function setCloseToTray(on: boolean) {
+  handleResult(await SettingsService.SetCloseToTray(on), "Could not save");
+  await refreshSettings();
+}
 async function setCheckUpdates(on: boolean) {
   handleResult(await SettingsService.SetCheckUpdates(on), "Could not save");
   await refreshSettings();
@@ -160,6 +164,14 @@ const themes: { v: Theme; label: string }[] = [
           </div>
           <p v-if="winError" class="text-[13px] text-danger" role="alert">{{ winError }}</p>
         </div>
+      </div>
+
+      <div class="row">
+        <div class="row-text">
+          <p class="row-title">Keep running in the tray</p>
+          <p class="row-hint">Closing the window hides it to the tray icon and the VPN stays up; use the icon's menu to show or quit.<template v-if="!settings.trayAvailable"> Your desktop shows no tray right now (GNOME needs the AppIndicator extension), so closing the window quits for now.</template></p>
+        </div>
+        <div class="row-control"><UiCheckbox :model-value="settings.closeToTray" label="Enabled" @update:model-value="setCloseToTray" /></div>
       </div>
 
       <h2 class="bg-surface2 px-4 py-2 text-[12px] font-semibold uppercase tracking-wide text-muted sm:px-5">OpenVPN</h2>

@@ -44,6 +44,8 @@ type Config struct {
 	ReconnectInterval int `yaml:"reconnect_interval_sec"`
 	// CheckUpdates looks for a newer release on GitHub when the app starts.
 	CheckUpdates bool `yaml:"check_updates"`
+	// CloseToTray hides the window to the tray icon instead of quitting.
+	CloseToTray bool `yaml:"close_to_tray"`
 	// WindowWidth/WindowHeight are the size of the window at start-up.
 	WindowWidth  int `yaml:"window_width"`
 	WindowHeight int `yaml:"window_height"`
@@ -115,6 +117,7 @@ func Defaults(d paths.Dirs) Config {
 		IPServices:        DefaultIPServices(),
 		AutoReconnect:     true,
 		CheckUpdates:      true,
+		CloseToTray:       true,
 		ReconnectAttempts: 3,
 		ReconnectInterval: 5,
 		WindowWidth:       DefaultWindowWidth,

@@ -10,6 +10,8 @@ All notable changes to this project are listed here. The format follows
 - `install.sh`: one-line install/update script that picks the right package for Linux or macOS from the latest GitHub release.
 - Check for updates: a button in About and an optional start-up check (Settings → Updates) that shows the command to update.
 
+- System tray icon: green when connected, orange while connecting, grey when disconnected, with Show, Disconnect and Quit. Closing the window keeps the app running in the tray (Settings → Keep running in the tray); where the desktop has no tray, closing quits as before.
+
 ### Fixed
 - The app now has a proper menu entry and icon on Linux: a hand-written `.desktop` file, a 256px icon, and `install.sh` installs both for the tar.gz install.
 
