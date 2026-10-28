@@ -33,7 +33,15 @@ Built with Go, [Wails v3](https://wails.io), Vue 3, TypeScript and Tailwind CSS.
 
 ## Download
 
-Pre-built packages are on the [Releases](https://github.com/mrmmg/openvpn-desktop/releases) page: `.deb`, `.rpm` and `.tar.gz` for Linux (amd64), and a universal `.dmg`/`.zip` for macOS.
+Install or update with one command (Linux and macOS; picks `.deb`, `.rpm` or the macOS app for your system):
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/mrmmg/openvpn-desktop/main/install.sh | sh
+```
+
+Pre-built packages are also on the [Releases](https://github.com/mrmmg/openvpn-desktop/releases) page: `.deb`, `.rpm` and `.tar.gz` for Linux (amd64), and a universal `.dmg`/`.zip` for macOS.
+
+The app can tell you when a newer release exists (About → Check for updates, or Settings → Updates) and shows the same command to run.
 
 The macOS app is not signed with an Apple Developer ID yet, so on first launch right-click it and choose **Open** (or run `xattr -cr /Applications/openvpn-desktop.app`).
 

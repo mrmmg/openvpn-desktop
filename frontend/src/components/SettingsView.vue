@@ -97,6 +97,10 @@ async function setVerbosity(v: number) {
   handleResult(await SettingsService.SetLogVerbosity(v), "Could not save");
   await refreshSettings();
 }
+async function setCheckUpdates(on: boolean) {
+  handleResult(await SettingsService.SetCheckUpdates(on), "Could not save");
+  await refreshSettings();
+}
 async function setPublicIp(on: boolean) {
   handleResult(await SettingsService.SetPublicIPCheck(on), "Could not save");
   await refreshSettings();
@@ -217,6 +221,13 @@ const themes: { v: Theme; label: string }[] = [
             <button class="flex h-10 items-center gap-2 rounded-lg border border-line px-3 text-[14px] hover:bg-surface2" @click="chooseDir"><Icon name="folder" :size="15" />Change…</button>
           </div>
         </div>
+      </div>
+
+      <h2 class="bg-surface2 px-4 py-2 text-[12px] font-semibold uppercase tracking-wide text-muted sm:px-5">Updates</h2>
+
+      <div class="row">
+        <div class="row-text"><p class="row-title">Check for updates at start-up</p><p class="row-hint">Asks GitHub whether a newer release exists. Nothing is downloaded or installed without you.</p></div>
+        <div class="row-control"><UiCheckbox :model-value="settings.checkUpdates" label="Enabled" @update:model-value="setCheckUpdates" /></div>
       </div>
 
       <h2 class="bg-surface2 px-4 py-2 text-[12px] font-semibold uppercase tracking-wide text-muted sm:px-5">Public IP</h2>

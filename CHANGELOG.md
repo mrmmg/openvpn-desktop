@@ -6,6 +6,10 @@ All notable changes to this project are listed here. The format follows
 
 ## [Unreleased]
 
+### Added
+- `install.sh`: one-line install/update script that picks the right package for Linux or macOS from the latest GitHub release.
+- Check for updates: a button in About and an optional start-up check (Settings → Updates) that shows the command to update.
+
 ## [0.1.0] - 2026-10-28
 
 First public version.

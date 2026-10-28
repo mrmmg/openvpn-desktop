@@ -311,7 +311,7 @@ func (s *SettingsService) Get() Settings {
 	detected, _ := process.LocateBinary("")
 	return Settings{
 		Theme: c.Theme, LogVerbosity: c.LogVerbosity, OpenVPNBinary: c.OpenVPNBinary,
-		DetectedBinary: detected, ProfilesDir: c.ProfilesDir, PublicIPCheck: c.PublicIPCheck, IPServices: toDTOServices(c.IPServices), AutoReconnect: c.AutoReconnect, ReconnectAttempts: c.ReconnectAttempts, ReconnectInterval: c.ReconnectInterval, WindowWidth: c.WindowWidth, WindowHeight: c.WindowHeight,
+		DetectedBinary: detected, ProfilesDir: c.ProfilesDir, PublicIPCheck: c.PublicIPCheck, IPServices: toDTOServices(c.IPServices), AutoReconnect: c.AutoReconnect, CheckUpdates: c.CheckUpdates, ReconnectAttempts: c.ReconnectAttempts, ReconnectInterval: c.ReconnectInterval, WindowWidth: c.WindowWidth, WindowHeight: c.WindowHeight,
 		ConfigFile: s.core.Cfg.Path(), LogFile: s.core.LogFile, Privilege: s.core.Launcher.Describe(), Version: Version,
 	}
 }
@@ -368,6 +368,29 @@ func (s *SettingsService) SetAutoReconnect(enabled bool, attempts, intervalSec i
 	return s.update(func(c *appconfig.Config) {
 		c.AutoReconnect, c.ReconnectAttempts, c.ReconnectInterval = enabled, attempts, intervalSec
 	})
+}
+
+// SetCheckUpdates enables or disables the check for a newer release at start-up.
+func (s *SettingsService) SetCheckUpdates(on bool) Result {
+	return s.update(func(c *appconfig.Config) { c.CheckUpdates = on })
+}
+
+// CheckForUpdate looks for a newer release on GitHub.
+func (s *SettingsService) CheckForUpdate() UpdateInfo {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	return checkUpdate(ctx, updateClient(), releasesAPI, Version)
+}
+
+// OpenURL opens an https link in the default browser.
+func (s *SettingsService) OpenURL(url string) Result {
+	if !strings.HasPrefix(url, "https://") {
+		return fail(CodeError, "only https links can be opened")
+	}
+	if err := application.Get().Browser.OpenURL(url); err != nil {
+		return failErr(CodeError, err)
+	}
+	return ok()
 }
 
 // SetWindowSize stores the start-up window size and applies it right away.

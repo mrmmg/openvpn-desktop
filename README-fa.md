@@ -35,7 +35,19 @@
 
 ## دانلود
 
+نصب یا به‌روزرسانی با یک دستور (Linux و macOS؛ بسته‌ی `.deb`، `.rpm` یا برنامه‌ی macOS مناسب سیستم را انتخاب می‌کند):
+
+</div>
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/mrmmg/openvpn-desktop/main/install.sh | sh
+```
+
+<div dir="rtl">
+
 بسته‌های آماده در صفحه‌ی [Releases](https://github.com/mrmmg/openvpn-desktop/releases) هستند: `.deb`، `.rpm` و `.tar.gz` برای Linux (amd64) و `.dmg`/`.zip` یونیورسال برای macOS.
+
+برنامه می‌تواند نسخه‌ی جدید را به شما اطلاع دهد (About ← Check for updates یا Settings ← Updates) و همین دستور را نشان می‌دهد.
 
 برنامه‌ی macOS هنوز با Apple Developer ID امضا نشده است؛ برای اولین اجرا روی آن راست‌کلیک و **Open** را بزنید (یا `xattr -cr /Applications/openvpn-desktop.app` را اجرا کنید).
 

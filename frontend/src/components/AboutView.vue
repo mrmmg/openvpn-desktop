@@ -3,9 +3,19 @@ import { onMounted, ref } from "vue";
 import { SettingsService } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import type { AboutInfo } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import Icon from "./Icon.vue";
+import { checkForUpdate, checkingUpdate, toast, update } from "../store";
 
 const info = ref<AboutInfo | null>(null);
 onMounted(async () => (info.value = await SettingsService.About()));
+
+async function copyCommand() {
+  try {
+    await navigator.clipboard.writeText(update.value?.command ?? "");
+    toast("success", "Command copied");
+  } catch {
+    toast("warning", "Could not copy", "Select the command and copy it by hand.");
+  }
+}
 </script>
 
 <template>
@@ -41,6 +51,35 @@ onMounted(async () => (info.value = await SettingsService.About()));
           </dd>
         </div>
       </dl>
+
+      <!-- Updates -->
+      <div class="flex flex-col gap-3 px-4 py-4 sm:px-5">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <div class="min-w-0 flex-1">
+            <p class="font-medium">Updates</p>
+            <p class="text-[13px] text-muted">
+              <template v-if="checkingUpdate">Checking GitHub…</template>
+              <template v-else-if="!update">Not checked yet.</template>
+              <template v-else-if="update.error">{{ update.error[0].toUpperCase() + update.error.slice(1) }}.</template>
+              <template v-else-if="update.available">Version {{ update.latest }} is available.</template>
+              <template v-else>You are up to date.</template>
+            </p>
+          </div>
+          <button class="flex h-9 items-center gap-1.5 rounded-lg border border-line px-3 text-[14px] hover:bg-surface2 disabled:opacity-50" :disabled="checkingUpdate" @click="checkForUpdate(true)">
+            <Icon name="download" :size="15" />Check for updates
+          </button>
+        </div>
+        <div v-if="update?.available" class="rounded-lg border border-line bg-surface2/60 p-3">
+          <p class="text-[13px] text-muted">Run this in a terminal to update; it downloads the release and installs it for your system:</p>
+          <div class="mt-2 flex items-start gap-2">
+            <code class="selectable min-w-0 flex-1 break-all rounded-md bg-surface px-2.5 py-2 font-mono text-[12.5px]">{{ update.command }}</code>
+            <button class="flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-line px-2.5 text-[13px] hover:bg-surface" @click="copyCommand">Copy</button>
+          </div>
+          <button v-if="update.url" class="mt-2 flex items-center gap-1.5 text-[13px] text-accent-text hover:underline" @click="SettingsService.OpenURL(update.url)">
+            <Icon name="external" :size="14" />Release notes
+          </button>
+        </div>
+      </div>
 
       <!-- Notices -->
       <details class="group">

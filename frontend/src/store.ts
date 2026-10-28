@@ -15,6 +15,7 @@ import type {
   Result,
   Settings,
   TrafficSample,
+  UpdateInfo,
 } from "../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 
 export type Theme = "light" | "dark" | "system";
@@ -155,6 +156,24 @@ export async function refreshSettings() {
   settings.value = await SettingsService.Get();
 }
 
+export const update = ref<UpdateInfo | null>(null);
+export const checkingUpdate = ref(false);
+
+// manual checks report every outcome; the start-up check only speaks up when there is news.
+export async function checkForUpdate(manual: boolean) {
+  if (checkingUpdate.value) return;
+  checkingUpdate.value = true;
+  try {
+    const info = await SettingsService.CheckForUpdate();
+    update.value = info;
+    if (info.available && !manual) toast("info", `Update available: v${info.latest}`, "Open About for the update command.");
+  } catch (e) {
+    update.value = { current: "", latest: "", available: false, url: "", command: "", error: String(e) };
+  } finally {
+    checkingUpdate.value = false;
+  }
+}
+
 export async function init() {
   Events.On("connection:state", (e: any) => {
     const s = e.data as ConnectionState;
@@ -199,4 +218,5 @@ export async function init() {
   }
   if (s.activeId) openId.value = s.activeId;
   for (const w of warnings ?? []) toast("warning", "Startup warning", w);
+  if (st.checkUpdates) void checkForUpdate(false);
 }
