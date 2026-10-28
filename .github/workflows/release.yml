@@ -1,0 +1,127 @@
+name: Release
+
+# Pushing a tag like v1.2.3 (or v1.2.3-rc.1 for a pre-release) builds the
+# Linux and macOS packages and publishes them as a GitHub Release.
+on:
+  push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]+*"]
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    name: Check tag
+    runs-on: ubuntu-24.04
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+    steps:
+      - id: v
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          if ! echo "$tag" | grep -Eq '^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?$'; then
+            echo "::error::'$tag' is not a valid semantic version tag (expected vMAJOR.MINOR.PATCH[-prerelease])"
+            exit 1
+          fi
+          echo "version=${tag#v}" >> "$GITHUB_OUTPUT"
+
+  linux:
+    name: Linux
+    needs: version
+    runs-on: ubuntu-24.04
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config libgtk-4-dev libwebkitgtk-6.0-dev
+      - run: go install github.com/wailsapp/wails/v3/cmd/wails3@v3.0.0
+      - run: go test -short ./internal/...
+      - name: Build and package
+        run: |
+          export GOARCH=amd64 GIT_COMMITTER_NAME=mrmmg GIT_COMMITTER_EMAIL=noreply@github.com
+          wails3 task version:sync
+          wails3 build
+          wails3 task linux:generate:deb linux:generate:rpm
+          mkdir dist
+          name="openvpn-desktop_${VERSION}_linux_amd64"
+          mv bin/openvpn-desktop.deb "dist/${name}.deb"
+          mv bin/openvpn-desktop.rpm "dist/${name}.rpm"
+          tar -C bin -czf "dist/${name}.tar.gz" openvpn-desktop
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux
+          path: dist/*
+
+  macos:
+    name: macOS
+    needs: version
+    runs-on: macos-14
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: go install github.com/wailsapp/wails/v3/cmd/wails3@v3.0.0
+      - run: go test -short ./internal/...
+      - name: Build universal app
+        run: |
+          wails3 task version:sync
+          wails3 task darwin:package:universal
+          mkdir dist
+          name="openvpn-desktop_${VERSION}_macos_universal"
+          ditto -c -k --keepParent bin/openvpn-desktop.app "dist/${name}.zip"
+          wails3 task darwin:create:dmg
+          mv bin/*.dmg "dist/${name}.dmg"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos
+          path: dist/*
+
+  publish:
+    name: Publish release
+    needs: [version, linux, macos]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      VERSION: ${{ needs.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Release notes from CHANGELOG.md
+        run: |
+          # Section "## [X.Y.Z] ..." up to the next "## ["; falls back to generated notes.
+          awk -v v="$VERSION" '
+            /^## \[/ { if (on) exit; on = index($0, "[" v "]") == 4 ; next }
+            on { print }' CHANGELOG.md > notes.md
+          [ -s notes.md ] || echo "No changelog entry for ${VERSION}; see the commit history." > notes.md
+      - name: Checksums
+        run: cd dist && sha256sum * > SHA256SUMS.txt
+      - name: Create release
+        run: |
+          flag=""
+          case "$VERSION" in *-*) flag="--prerelease" ;; esac
+          gh release create "$GITHUB_REF_NAME" dist/* \
+            --title "OpenVPN Desktop ${VERSION}" \
+            --notes-file notes.md $flag

@@ -33,6 +33,12 @@
 
 </details>
 
+## دانلود
+
+بسته‌های آماده در صفحه‌ی [Releases](https://github.com/mrmmg/openvpn-desktop/releases) هستند: `.deb`، `.rpm` و `.tar.gz` برای Linux (amd64) و `.dmg`/`.zip` یونیورسال برای macOS.
+
+برنامه‌ی macOS هنوز با Apple Developer ID امضا نشده است؛ برای اولین اجرا روی آن راست‌کلیک و **Open** را بزنید (یا `xattr -cr /Applications/openvpn-desktop.app` را اجرا کنید).
+
 ## پیش‌نیازها
 
 - OpenVPN (دستور `openvpn` در `PATH` باشد، یا مسیرش را در Settings بدهید)
@@ -65,6 +71,20 @@ go test ./...     # tests (add -short to skip the OpenVPN integration tests)
 | `frontend/` | رابط Vue (`src/`)؛ پوشه‌ی `bindings/` را Wails تولید می‌کند |
 
 تنظیمات در `~/.config/openvpn-desktop/` ذخیره می‌شود (در macOS: `~/Library/Application Support/openvpn-desktop/`). پروفایل‌های واردشده در پوشه‌ی `profiles/` کپی می‌شوند که مسیرش را می‌توانید در Settings عوض کنید. فایل‌های اصلی شما هرگز تغییر نمی‌کنند.
+
+## انتشار و نسخه‌بندی
+
+نسخه‌ها از [Semantic Versioning](https://semver.org/) پیروی می‌کنند و از git tag گرفته می‌شوند؛ تغییرات در [CHANGELOG.md](CHANGELOG.md) هست. برای انتشار، ابتدا یک مورد به changelog اضافه کنید، سپس:
+
+</div>
+
+```sh
+git tag v0.2.0 && git push origin v0.2.0
+```
+
+<div dir="rtl">
+
+GitHub Actions بسته‌های Linux و macOS را می‌سازد و release را ایجاد می‌کند (تگی با پسوند مثل `v0.2.0-rc.1` به‌صورت pre-release منتشر می‌شود). در build محلی، نسخه از `git describe` گرفته می‌شود.
 
 ## وضعیت
 

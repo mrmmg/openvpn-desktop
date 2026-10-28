@@ -20,7 +20,7 @@ import (
 )
 
 // Version is set at build time (-ldflags "-X .../backend.Version=1.2.3").
-var Version = "1.0.0"
+var Version = "dev"
 
 // Emit delivers an event to the frontend.
 type Emit func(name string, data any)

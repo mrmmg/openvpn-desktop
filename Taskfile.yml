@@ -4,6 +4,9 @@ vars:
   APP_NAME: "openvpn-desktop"
   BIN_DIR: "bin"
   PACKAGE_MANAGER: '{{.PACKAGE_MANAGER | default "npm"}}'
+  # Taken from $VERSION or the latest git tag (see build/version.sh).
+  VERSION:
+    sh: ./build/version.sh
   VITE_PORT: '{{.WAILS_VITE_PORT | default 9245}}'
   # Target OS for build/package/run. Defaults to the host OS, and is overridden
   # by `wails3 build GOOS=...` (or the GOOS env var) for cross-compilation. The
@@ -35,3 +38,13 @@ tasks:
     summary: Runs the application in development mode
     cmds:
       - wails3 dev -config ./build/config.yml -port {{.VITE_PORT}}
+
+  version:sync:
+    summary: Writes the current version into the package metadata (run before packaging a release)
+    cmds:
+      - |
+        v='{{.VERSION}}'
+        core="${v%%-*}"
+        perl -pi -e "s/^version: .*/version: \"$v\"/" build/linux/nfpm/nfpm.yaml
+        perl -pi -e "s/^  version: \".*\"/  version: \"$v\"/" build/config.yml
+        perl -0pi -e "s|(CFBundleVersion</key>\s*<string>)[^<]*|\${1}$core|; s|(CFBundleShortVersionString</key>\s*<string>)[^<]*|\${1}$core|" build/darwin/Info.plist
