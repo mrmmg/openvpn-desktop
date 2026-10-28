@@ -10,6 +10,25 @@ A small desktop app for managing and using OpenVPN connections on **Linux** and 
 
 Built with Go, [Wails v3](https://wails.io), Vue 3, TypeScript and Tailwind CSS.
 
+## Screenshots
+
+<details>
+<summary>Show screenshots</summary>
+
+| No profiles yet | Profiles |
+|---|---|
+| <img src="art/main-page-no-profile.png" width="320" alt="Empty state with import area"> | <img src="art/main-page-profile-sample.png" width="320" alt="Profile list"> |
+
+| Connected | Logs |
+|---|---|
+| <img src="art/profile-connected-sample.png" width="320" alt="Connected profile with live traffic chart"> | <img src="art/logs-page.png" width="320" alt="Logs page"> |
+
+| Settings (1/2) | Settings (2/2) |
+|---|---|
+| <img src="art/settings-page-1.png" width="320" alt="Settings, first half"> | <img src="art/settings-page-2.png" width="320" alt="Settings, second half"> |
+
+</details>
+
 ## Requirements
 
 - OpenVPN (`openvpn` in your `PATH`, or set the path in Settings)
