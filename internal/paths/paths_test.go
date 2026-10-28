@@ -3,6 +3,7 @@ package paths
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 )
@@ -13,7 +14,12 @@ func TestResolve(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if d.Config != "/cfg/openvpn-desktop" || d.State != "/home/u/.local/state/openvpn-desktop" || d.Runtime != "/run/user/1000/openvpn-desktop" {
+	// The relative XDG_STATE_HOME is ignored; the default is the platform's.
+	wantState := "/home/u/.local/state/openvpn-desktop"
+	if runtime.GOOS == "darwin" {
+		wantState = "/home/u/Library/Application Support/openvpn-desktop"
+	}
+	if d.Config != "/cfg/openvpn-desktop" || d.State != wantState || d.Runtime != "/run/user/1000/openvpn-desktop" {
 		t.Fatalf("%+v", d)
 	}
 	delete(env, "XDG_RUNTIME_DIR")
