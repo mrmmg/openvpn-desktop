@@ -5,10 +5,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mrmmg/openvpn-wails/internal/analyzer"
-	"github.com/mrmmg/openvpn-wails/internal/network"
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
-	"github.com/mrmmg/openvpn-wails/internal/vpn"
+	"github.com/mrmmg/openvpn-desktop/internal/analyzer"
+	"github.com/mrmmg/openvpn-desktop/internal/network"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/vpn"
 )
 
 func TestScanLog(t *testing.T) {

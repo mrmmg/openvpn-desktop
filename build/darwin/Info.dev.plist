@@ -6,9 +6,9 @@
         <key>CFBundleName</key>
             <string>OpenVPN Client</string>
         <key>CFBundleExecutable</key>
-            <string>openvpn-wails</string>
+            <string>openvpn-desktop</string>
         <key>CFBundleIdentifier</key>
-            <string>com.mrmmg.openvpnwails</string>
+            <string>com.mrmmg.openvpndesktop</string>
         <key>CFBundleVersion</key>
             <string>0.1.0</string>
         <key>CFBundleGetInfoString</key>

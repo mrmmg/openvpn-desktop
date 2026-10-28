@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ProfileDetails } from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+import type { ProfileDetails } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import Modal from "./Modal.vue";
 
 defineProps<{ details: ProfileDetails }>();

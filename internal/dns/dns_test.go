@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mrmmg/openvpn-wails/internal/network"
+	"github.com/mrmmg/openvpn-desktop/internal/network"
 )
 
 type routes map[string]string // addr -> dev

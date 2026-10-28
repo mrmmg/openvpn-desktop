@@ -3,26 +3,26 @@
 #
 # The lines below are called `modelines`. See `:help modeline`
 
-name: "openvpn-wails"
+name: "openvpn-desktop"
 arch: ${GOARCH}
 platform: "linux"
 version: "0.1.0"
 section: "default"
 priority: "extra"
 maintainer: ${GIT_COMMITTER_NAME} <${GIT_COMMITTER_EMAIL}>
-description: "A openvpn-wails application"
+description: "A openvpn-desktop application"
 vendor: "My Company"
 homepage: "https://wails.io"
 license: "MIT"
 release: "1"
 
 contents:
-  - src: "./bin/openvpn-wails"
-    dst: "/usr/local/bin/openvpn-wails"
+  - src: "./bin/openvpn-desktop"
+    dst: "/usr/local/bin/openvpn-desktop"
   - src: "./build/appicon.png"
-    dst: "/usr/share/icons/hicolor/128x128/apps/openvpn-wails.png"
-  - src: "./build/linux/openvpn-wails.desktop"
-    dst: "/usr/share/applications/openvpn-wails.desktop"
+    dst: "/usr/share/icons/hicolor/128x128/apps/openvpn-desktop.png"
+  - src: "./build/linux/openvpn-desktop.desktop"
+    dst: "/usr/share/applications/openvpn-desktop.desktop"
 
 # Default dependencies for the GTK4 + WebKitGTK 6.0 stack (Ubuntu 24.04+ / Debian 13+)
 depends:

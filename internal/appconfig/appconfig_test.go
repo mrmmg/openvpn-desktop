@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/mrmmg/openvpn-wails/internal/paths"
+	"github.com/mrmmg/openvpn-desktop/internal/paths"
 )
 
 func dirs(t *testing.T) paths.Dirs {

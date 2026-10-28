@@ -15,8 +15,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/profile"
-	"github.com/mrmmg/openvpn-wails/internal/state"
+	"github.com/mrmmg/openvpn-desktop/internal/profile"
+	"github.com/mrmmg/openvpn-desktop/internal/state"
 )
 
 type fakeRunner struct {

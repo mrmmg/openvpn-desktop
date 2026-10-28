@@ -13,7 +13,7 @@ import (
 
 	"go.yaml.in/yaml/v3"
 
-	"github.com/mrmmg/openvpn-wails/internal/paths"
+	"github.com/mrmmg/openvpn-desktop/internal/paths"
 )
 
 // Overrides are extra OpenVPN options applied when launching a profile.

@@ -18,7 +18,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/process"
+	"github.com/mrmmg/openvpn-desktop/internal/process"
 )
 
 // Errors reported to the UI.

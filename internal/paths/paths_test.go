@@ -13,12 +13,12 @@ func TestResolve(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if d.Config != "/cfg/openvpn-wails" || d.State != "/home/u/.local/state/openvpn-wails" || d.Runtime != "/run/user/1000/openvpn-wails" {
+	if d.Config != "/cfg/openvpn-desktop" || d.State != "/home/u/.local/state/openvpn-desktop" || d.Runtime != "/run/user/1000/openvpn-desktop" {
 		t.Fatalf("%+v", d)
 	}
 	delete(env, "XDG_RUNTIME_DIR")
 	d, _ = Resolve(func(k string) string { return env[k] })
-	if !strings.HasPrefix(filepath.Base(d.Runtime), "openvpn-wails-") {
+	if !strings.HasPrefix(filepath.Base(d.Runtime), "openvpn-desktop-") {
 		t.Fatalf("runtime fallback %s", d.Runtime)
 	}
 }
@@ -55,7 +55,7 @@ func TestPrivateDirAndAtomicWrite(t *testing.T) {
 	if len(entries) != 1 {
 		t.Fatal("temp file left behind")
 	}
-	if CheckSocketPath("/run/user/1000/openvpn-wails/mgmt.sock") != nil || CheckSocketPath("/"+strings.Repeat("a", 120)) == nil {
+	if CheckSocketPath("/run/user/1000/openvpn-desktop/mgmt.sock") != nil || CheckSocketPath("/"+strings.Repeat("a", 120)) == nil {
 		t.Fatal("socket path check")
 	}
 }

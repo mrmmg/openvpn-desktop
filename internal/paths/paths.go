@@ -1,4 +1,4 @@
-// Package paths resolves the XDG base directories used by openvpn-wails and
+// Package paths resolves the XDG base directories used by openvpn-desktop and
 // expands user-supplied paths.
 package paths
 
@@ -12,14 +12,14 @@ import (
 )
 
 // AppName is the directory name used below every XDG base directory.
-const AppName = "openvpn-wails"
+const AppName = "openvpn-desktop"
 
 // Dirs holds the resolved per-user directories.
 type Dirs struct {
 	Home    string
-	Config  string // ~/.config/openvpn-wails
-	State   string // ~/.local/state/openvpn-wails
-	Runtime string // $XDG_RUNTIME_DIR/openvpn-wails (or /tmp/openvpn-wails-<uid>)
+	Config  string // ~/.config/openvpn-desktop
+	State   string // ~/.local/state/openvpn-desktop
+	Runtime string // $XDG_RUNTIME_DIR/openvpn-desktop (or /tmp/openvpn-desktop-<uid>)
 }
 
 // Env abstracts environment lookups for testing.

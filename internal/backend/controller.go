@@ -12,15 +12,15 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/analyzer"
-	"github.com/mrmmg/openvpn-wails/internal/appconfig"
-	"github.com/mrmmg/openvpn-wails/internal/ipcheck"
-	"github.com/mrmmg/openvpn-wails/internal/network"
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
-	"github.com/mrmmg/openvpn-wails/internal/process"
-	"github.com/mrmmg/openvpn-wails/internal/state"
-	"github.com/mrmmg/openvpn-wails/internal/validate"
-	"github.com/mrmmg/openvpn-wails/internal/vpn"
+	"github.com/mrmmg/openvpn-desktop/internal/analyzer"
+	"github.com/mrmmg/openvpn-desktop/internal/appconfig"
+	"github.com/mrmmg/openvpn-desktop/internal/ipcheck"
+	"github.com/mrmmg/openvpn-desktop/internal/network"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/process"
+	"github.com/mrmmg/openvpn-desktop/internal/state"
+	"github.com/mrmmg/openvpn-desktop/internal/validate"
+	"github.com/mrmmg/openvpn-desktop/internal/vpn"
 )
 
 const (

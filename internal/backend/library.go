@@ -13,9 +13,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/appconfig"
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
-	"github.com/mrmmg/openvpn-wails/internal/profile"
+	"github.com/mrmmg/openvpn-desktop/internal/appconfig"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/profile"
 )
 
 const credExt = ".txt"

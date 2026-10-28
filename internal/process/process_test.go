@@ -6,13 +6,13 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/mrmmg/openvpn-wails/internal/paths"
+	"github.com/mrmmg/openvpn-desktop/internal/paths"
 )
 
 func TestBuildArgs(t *testing.T) {
 	s := LaunchSpec{
 		Binary: "/usr/sbin/openvpn", ProfilePath: "/p/office.ovpn", Dir: "/p", LogPath: "/s/office.log",
-		Socket: "/run/user/1000/openvpn-wails/mgmt.sock", Verbosity: 3, CredFile: "/p/office.txt",
+		Socket: "/run/user/1000/openvpn-desktop/mgmt.sock", Verbosity: 3, CredFile: "/p/office.txt",
 		ClientUser: "alice", ExtraArgs: []string{"--route-nopull"},
 	}
 	args := BuildArgs(s)
@@ -21,7 +21,7 @@ func TestBuildArgs(t *testing.T) {
 	if logIdx < 0 || cfgIdx < 0 || logIdx > cfgIdx {
 		t.Fatalf("--log must precede --config: %s", joined)
 	}
-	for _, want := range []string{"--daemon openvpn-wails", "--management /run/user/1000/openvpn-wails/mgmt.sock unix", "--management-client-user alice", "--auth-user-pass /p/office.txt", "--management-query-passwords"} {
+	for _, want := range []string{"--daemon openvpn-desktop", "--management /run/user/1000/openvpn-desktop/mgmt.sock unix", "--management-client-user alice", "--auth-user-pass /p/office.txt", "--management-query-passwords"} {
 		if !strings.Contains(joined, want) {
 			t.Errorf("missing %q in %s", want, joined)
 		}

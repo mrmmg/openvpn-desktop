@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/network"
+	"github.com/mrmmg/openvpn-desktop/internal/network"
 )
 
 // Server is a configured DNS server.

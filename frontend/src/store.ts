@@ -5,7 +5,7 @@ import {
   LogsService,
   ProfilesService,
   SettingsService,
-} from "../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+} from "../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import type {
   ConnectionState,
   ImportOutcome,
@@ -15,7 +15,7 @@ import type {
   Result,
   Settings,
   TrafficSample,
-} from "../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+} from "../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 
 export type Theme = "light" | "dark" | "system";
 export type View = "profiles" | "logs" | "settings" | "about";

@@ -71,7 +71,7 @@ func NewHTTPChecker(timeout time.Duration, version string) *HTTPChecker {
 	return &HTTPChecker{
 		Client:    &http.Client{Transport: tr, Timeout: timeout},
 		Timeout:   timeout,
-		UserAgent: "curl/8.0 (compatible; openvpn-wails/" + version + ")",
+		UserAgent: "curl/8.0 (compatible; openvpn-desktop/" + version + ")",
 	}
 }
 

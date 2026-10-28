@@ -13,8 +13,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
-	"github.com/mrmmg/openvpn-wails/internal/profile"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/profile"
 )
 
 // material loads the PEM text of a file directive, inline or from disk.

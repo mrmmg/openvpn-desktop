@@ -8,15 +8,15 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/appconfig"
-	"github.com/mrmmg/openvpn-wails/internal/applog"
-	"github.com/mrmmg/openvpn-wails/internal/ipcheck"
-	"github.com/mrmmg/openvpn-wails/internal/network"
-	"github.com/mrmmg/openvpn-wails/internal/paths"
-	"github.com/mrmmg/openvpn-wails/internal/privilege"
-	"github.com/mrmmg/openvpn-wails/internal/process"
-	"github.com/mrmmg/openvpn-wails/internal/state"
-	"github.com/mrmmg/openvpn-wails/internal/vpn"
+	"github.com/mrmmg/openvpn-desktop/internal/appconfig"
+	"github.com/mrmmg/openvpn-desktop/internal/applog"
+	"github.com/mrmmg/openvpn-desktop/internal/ipcheck"
+	"github.com/mrmmg/openvpn-desktop/internal/network"
+	"github.com/mrmmg/openvpn-desktop/internal/paths"
+	"github.com/mrmmg/openvpn-desktop/internal/privilege"
+	"github.com/mrmmg/openvpn-desktop/internal/process"
+	"github.com/mrmmg/openvpn-desktop/internal/state"
+	"github.com/mrmmg/openvpn-desktop/internal/vpn"
 )
 
 // Version is set at build time (-ldflags "-X .../backend.Version=1.2.3").

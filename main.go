@@ -12,8 +12,8 @@ import (
 	"github.com/wailsapp/wails/v3/pkg/events"
 	"github.com/wailsapp/wails/v3/pkg/services/notifications"
 
-	"github.com/mrmmg/openvpn-wails/internal/backend"
-	"github.com/mrmmg/openvpn-wails/internal/paths"
+	"github.com/mrmmg/openvpn-desktop/internal/backend"
+	"github.com/mrmmg/openvpn-desktop/internal/paths"
 )
 
 // The built frontend is embedded into the binary.

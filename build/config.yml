@@ -7,7 +7,7 @@ version: '3'
 info:
   companyName: "mrmmg" # The name of the company
   productName: "OpenVPN Client" # The name of the application
-  productIdentifier: "com.mrmmg.openvpnwails" # The unique product identifier
+  productIdentifier: "com.mrmmg.openvpndesktop" # The unique product identifier
   description: "A desktop client for OpenVPN" # The application description
   copyright: "(c) 2026, mrmmg" # Copyright text
   comments: "Desktop OpenVPN client" # Comments

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from "vue";
-import { LogsService } from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+import { LogsService } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import { handleResult, logs, settings, toast } from "../store";
 import Icon from "./Icon.vue";
 import UiCheckbox from "./UiCheckbox.vue";

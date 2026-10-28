@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/mrmmg/openvpn-wails/internal/process"
+	"github.com/mrmmg/openvpn-desktop/internal/process"
 )
 
 func TestAppleScriptEscaping(t *testing.T) {

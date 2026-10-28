@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, ref } from "vue";
-import type { Profile } from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+import type { Profile } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import { conn, connectionBusy, isActive, openId } from "../store";
 import { formatLastConnected as formatLast } from "../format";
 import Icon from "./Icon.vue";

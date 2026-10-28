@@ -3,8 +3,8 @@ import { ref } from "vue";
 import {
   ConnectionService,
   ProfilesService,
-} from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
-import type { Profile, ProfileDetails } from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+} from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
+import type { Profile, ProfileDetails } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import { activeProfile, browseImport, conn, connectionBusy, handleResult, openId, profiles, profilesLoaded, toast } from "../store";
 import Icon from "./Icon.vue";
 import ImportZone from "./ImportZone.vue";

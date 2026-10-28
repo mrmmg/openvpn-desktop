@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/mrmmg/openvpn-wails/internal/appconfig"
-	"github.com/mrmmg/openvpn-wails/internal/paths"
+	"github.com/mrmmg/openvpn-desktop/internal/appconfig"
+	"github.com/mrmmg/openvpn-desktop/internal/paths"
 )
 
 func newLib(t *testing.T) (*Library, string) {

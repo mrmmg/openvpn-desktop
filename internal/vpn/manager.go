@@ -14,20 +14,20 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/analyzer"
-	"github.com/mrmmg/openvpn-wails/internal/credentials"
-	"github.com/mrmmg/openvpn-wails/internal/logs"
-	"github.com/mrmmg/openvpn-wails/internal/mgmt"
-	"github.com/mrmmg/openvpn-wails/internal/network"
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
-	"github.com/mrmmg/openvpn-wails/internal/process"
-	"github.com/mrmmg/openvpn-wails/internal/profile"
-	"github.com/mrmmg/openvpn-wails/internal/state"
+	"github.com/mrmmg/openvpn-desktop/internal/analyzer"
+	"github.com/mrmmg/openvpn-desktop/internal/credentials"
+	"github.com/mrmmg/openvpn-desktop/internal/logs"
+	"github.com/mrmmg/openvpn-desktop/internal/mgmt"
+	"github.com/mrmmg/openvpn-desktop/internal/network"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/process"
+	"github.com/mrmmg/openvpn-desktop/internal/profile"
+	"github.com/mrmmg/openvpn-desktop/internal/state"
 )
 
 // Errors returned by the manager.
 var (
-	ErrAlreadyRunning = errors.New("a connection managed by openvpn-wails is already active")
+	ErrAlreadyRunning = errors.New("a connection managed by openvpn-desktop is already active")
 	ErrNotRunning     = errors.New("no OpenVPN connection to stop")
 	ErrStopTimeout    = errors.New("OpenVPN did not exit in time")
 	ErrNoPrompt       = errors.New("OpenVPN is not waiting for credentials")
@@ -714,7 +714,7 @@ func (m *Manager) processGone(stopping bool) {
 		if failure == nil || strings.HasPrefix(failure.Summary, "Stopped") {
 			failure = &logs.Failure{Summary: "OpenVPN exited unexpectedly", Hint: "See the log for details."}
 			if f2 := logs.FindFailure(ring); f2 != nil && strings.HasPrefix(f2.Summary, "Stopped") {
-				failure = &logs.Failure{Summary: "OpenVPN was terminated outside openvpn-wails", Line: f2.Line}
+				failure = &logs.Failure{Summary: "OpenVPN was terminated outside openvpn-desktop", Line: f2.Line}
 			}
 		}
 		m.setPhaseLocked(Failed, "")
@@ -1178,7 +1178,7 @@ func (m *Manager) deriveExternalLocked(links []network.Link, snap *Snapshot) {
 		if v6 := up[0].IPv6(); len(v6) > 0 {
 			m.st.LocalIPv6 = v6[0].Addr().String()
 		}
-		m.setPhaseLocked(Connected, "external process (not controlled by openvpn-wails)")
+		m.setPhaseLocked(Connected, "external process (not controlled by openvpn-desktop)")
 		l := up[0]
 		snap.VPNLink = &l
 	default:

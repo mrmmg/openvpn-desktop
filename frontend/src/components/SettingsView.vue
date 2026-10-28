@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import { SettingsService } from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+import { SettingsService } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import { handleResult, refreshSettings, setTheme, settings, theme, toast, type Theme } from "../store";
 import Icon from "./Icon.vue";
 import Modal from "./Modal.vue";

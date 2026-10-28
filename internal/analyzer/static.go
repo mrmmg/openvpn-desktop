@@ -16,7 +16,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
 )
 
 // Mode is a routing classification.

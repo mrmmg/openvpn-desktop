@@ -19,13 +19,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/analyzer"
-	"github.com/mrmmg/openvpn-wails/internal/credentials"
-	"github.com/mrmmg/openvpn-wails/internal/network"
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
-	"github.com/mrmmg/openvpn-wails/internal/process"
-	"github.com/mrmmg/openvpn-wails/internal/profile"
-	"github.com/mrmmg/openvpn-wails/internal/state"
+	"github.com/mrmmg/openvpn-desktop/internal/analyzer"
+	"github.com/mrmmg/openvpn-desktop/internal/credentials"
+	"github.com/mrmmg/openvpn-desktop/internal/network"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/process"
+	"github.com/mrmmg/openvpn-desktop/internal/profile"
+	"github.com/mrmmg/openvpn-desktop/internal/state"
 )
 
 // These tests run a real OpenVPN server and client on 127.0.0.1 using

@@ -6,10 +6,10 @@ package vpn
 import (
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/logs"
-	"github.com/mrmmg/openvpn-wails/internal/mgmt"
-	"github.com/mrmmg/openvpn-wails/internal/network"
-	"github.com/mrmmg/openvpn-wails/internal/process"
+	"github.com/mrmmg/openvpn-desktop/internal/logs"
+	"github.com/mrmmg/openvpn-desktop/internal/mgmt"
+	"github.com/mrmmg/openvpn-desktop/internal/network"
+	"github.com/mrmmg/openvpn-desktop/internal/process"
 )
 
 // Phase is the user-facing connection state.
@@ -31,7 +31,7 @@ type Source string
 // Sources.
 const (
 	SourceNone     Source = ""
-	SourceManaged  Source = "managed"  // started by openvpn-wails, controlled via management socket
+	SourceManaged  Source = "managed"  // started by openvpn-desktop, controlled via management socket
 	SourceExternal Source = "external" // another openvpn process
 	SourceSystemd  Source = "systemd"  // an openvpn systemd unit
 )

@@ -3,7 +3,7 @@ package credentials
 import (
 	"path/filepath"
 
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
 )
 
 // Source says where OpenVPN will get username/password from.

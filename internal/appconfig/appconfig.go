@@ -13,8 +13,8 @@ import (
 
 	"go.yaml.in/yaml/v3"
 
-	"github.com/mrmmg/openvpn-wails/internal/paths"
-	"github.com/mrmmg/openvpn-wails/internal/process"
+	"github.com/mrmmg/openvpn-desktop/internal/paths"
+	"github.com/mrmmg/openvpn-desktop/internal/process"
 )
 
 // Theme values.

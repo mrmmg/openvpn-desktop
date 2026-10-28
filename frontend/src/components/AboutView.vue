@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { SettingsService } from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
-import type { AboutInfo } from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+import { SettingsService } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
+import type { AboutInfo } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import Icon from "./Icon.vue";
 
 const info = ref<AboutInfo | null>(null);

@@ -1,8 +1,8 @@
 package analyzer
 
 import (
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
-	"github.com/mrmmg/openvpn-wails/internal/state"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/state"
 )
 
 // gatewayFilters are the pushed options ignored by IgnorePushedGateway.

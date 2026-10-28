@@ -13,10 +13,10 @@ import (
 
 	"github.com/wailsapp/wails/v3/pkg/application"
 
-	"github.com/mrmmg/openvpn-wails/internal/appconfig"
-	"github.com/mrmmg/openvpn-wails/internal/credentials"
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
-	"github.com/mrmmg/openvpn-wails/internal/process"
+	"github.com/mrmmg/openvpn-desktop/internal/appconfig"
+	"github.com/mrmmg/openvpn-desktop/internal/credentials"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/process"
 )
 
 // ---------------------------------------------------------------------------

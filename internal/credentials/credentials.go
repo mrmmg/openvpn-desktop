@@ -21,7 +21,7 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/mrmmg/openvpn-wails/internal/paths"
+	"github.com/mrmmg/openvpn-desktop/internal/paths"
 )
 
 // MaxFieldLen is OpenVPN's USER_PASS_LEN limit (including NUL).

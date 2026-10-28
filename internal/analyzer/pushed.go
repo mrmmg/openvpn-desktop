@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
 )
 
 // PushedOption is one option received in PUSH_REPLY.

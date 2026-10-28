@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/paths"
+	"github.com/mrmmg/openvpn-desktop/internal/paths"
 )
 
 // LaunchSpec describes one OpenVPN start.
@@ -46,7 +46,7 @@ func BuildArgs(s LaunchSpec) []string {
 		"--log", s.LogPath,
 		"--cd", s.Dir,
 		"--config", s.ProfilePath,
-		"--daemon", "openvpn-wails",
+		"--daemon", "openvpn-desktop",
 		"--verb", strconv.Itoa(s.Verbosity),
 		"--management", s.Socket, "unix",
 		"--management-query-passwords",

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { ConnectionService } from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+import { ConnectionService } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import { conn, handleResult, now, toast, traffic } from "../store";
 import { formatBytes, formatDuration, splitRate } from "../format";
-import type { Profile } from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+import type { Profile } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import Icon from "./Icon.vue";
 import TrafficChart from "./TrafficChart.vue";
 

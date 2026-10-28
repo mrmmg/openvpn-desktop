@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { ConnectionService } from "../../bindings/github.com/mrmmg/openvpn-wails/internal/backend";
+import { ConnectionService } from "../../bindings/github.com/mrmmg/openvpn-desktop/internal/backend";
 import { conn, handleResult } from "../store";
 import Modal from "./Modal.vue";
 

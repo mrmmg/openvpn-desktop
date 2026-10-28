@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/applog"
-	"github.com/mrmmg/openvpn-wails/internal/logs"
+	"github.com/mrmmg/openvpn-desktop/internal/applog"
+	"github.com/mrmmg/openvpn-desktop/internal/logs"
 )
 
 const (

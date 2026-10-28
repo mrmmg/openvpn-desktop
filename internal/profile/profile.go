@@ -14,9 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/credentials"
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
-	"github.com/mrmmg/openvpn-wails/internal/paths"
+	"github.com/mrmmg/openvpn-desktop/internal/credentials"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/paths"
 )
 
 // Profile is one OpenVPN configuration file.
@@ -237,7 +237,7 @@ func (s *Store) Import(src, name string) (ImportResult, error) {
 }
 
 // Template is the skeleton used for new profiles.
-const Template = `# OpenVPN client profile created by openvpn-wails.
+const Template = `# OpenVPN client profile created by openvpn-desktop.
 client
 dev tun
 proto udp

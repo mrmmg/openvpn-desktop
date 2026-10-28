@@ -3,7 +3,7 @@ package analyzer
 import (
 	"fmt"
 
-	"github.com/mrmmg/openvpn-wails/internal/network"
+	"github.com/mrmmg/openvpn-desktop/internal/network"
 )
 
 // Runtime is the observed routing state.

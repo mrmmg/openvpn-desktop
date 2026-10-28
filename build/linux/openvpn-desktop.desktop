@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=openvpn-desktop
+Exec=openvpn-desktop
+Icon=openvpn-desktop
+Categories=Development;
+Terminal=false
+Keywords=wails
+Version=1.0
+StartupNotify=false

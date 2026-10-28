@@ -1,13 +1,13 @@
 [Desktop Entry]
 Version=1.0
 Name=OpenVPN Client
-Comment=A openvpn-wails application
+Comment=A openvpn-desktop application
 # The Exec line includes %u to pass the URL to the application
-Exec=/usr/local/bin/openvpn-wails %u
+Exec=/usr/local/bin/openvpn-desktop %u
 Terminal=false
 Type=Application
-Icon=openvpn-wails
+Icon=openvpn-desktop
 Categories=Utility;
-StartupWMClass=openvpn-wails
+StartupWMClass=openvpn-desktop
 
  

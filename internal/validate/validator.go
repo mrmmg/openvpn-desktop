@@ -13,11 +13,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/mrmmg/openvpn-wails/internal/analyzer"
-	"github.com/mrmmg/openvpn-wails/internal/credentials"
-	"github.com/mrmmg/openvpn-wails/internal/ovpn"
-	"github.com/mrmmg/openvpn-wails/internal/profile"
-	"github.com/mrmmg/openvpn-wails/internal/state"
+	"github.com/mrmmg/openvpn-desktop/internal/analyzer"
+	"github.com/mrmmg/openvpn-desktop/internal/credentials"
+	"github.com/mrmmg/openvpn-desktop/internal/ovpn"
+	"github.com/mrmmg/openvpn-desktop/internal/profile"
+	"github.com/mrmmg/openvpn-desktop/internal/state"
 )
 
 // RunResult is the outcome of running the openvpn binary.
@@ -200,7 +200,7 @@ func (v *Validator) static(r *Report, p profile.Profile) *ovpn.Config {
 	}
 	for _, name := range []string{"daemon", "log", "log-append", "syslog", "management", "writepid"} {
 		if d, ok := cfg.Last(name); ok {
-			r.add(L, Info, "'"+name+"' is overridden", "openvpn-wails manages logging, daemon mode and the management socket itself", d.Line)
+			r.add(L, Info, "'"+name+"' is overridden", "openvpn-desktop manages logging, daemon mode and the management socket itself", d.Line)
 		}
 	}
 	scripts := cfg.Scripts()

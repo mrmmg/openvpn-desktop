@@ -1,4 +1,4 @@
-module github.com/mrmmg/openvpn-wails
+module github.com/mrmmg/openvpn-desktop
 
 go 1.27.0
 

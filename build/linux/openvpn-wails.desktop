@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=openvpn-wails
-Exec=openvpn-wails
-Icon=openvpn-wails
+Name=openvpn-desktop
+Exec=openvpn-desktop
+Icon=openvpn-desktop
 Categories=Development;
 Terminal=false
 Keywords=wails
