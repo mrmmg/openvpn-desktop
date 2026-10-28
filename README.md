@@ -1,3 +1,5 @@
+**English** · [فارسی](README-fa.md)
+
 # OpenVPN Client
 
 A small desktop app for managing and using OpenVPN connections on **Linux** and **macOS**. It is a friendly front end for the OpenVPN you already have installed: import your `.ovpn` profiles, switch them on and off, and watch the live traffic.
